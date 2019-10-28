@@ -1,0 +1,62 @@
+version: "3.5"
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+    - "80:80"
+    volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+    - ./config/nginx-proxy/nginx-proxy.conf:/etc/nginx/conf.d/my_proxy.conf
+
+  workspaces:
+    image: lab.trisoft.ro:4567/campr/on-premise/workspaces:latest
+    shm_size: 1g
+    ports:
+    - "443:443"
+    - "3000:3000"
+    - "8080:8080"
+    env_file: config/.env
+    volumes:
+    - ./config/workspaces/backend/app/config/parameters.yml:/app/backend/app/config/parameters.yml
+    - workspaces-static-js:/app/web/static/js/
+    - workspaces-uploads:/app/web/uploads
+    environment:
+    - VIRTUAL_HOST=*.campr.local
+
+  portal:
+    image: lab.trisoft.ro:4567/campr/on-premise/portal:latest
+    shm_size: 1g
+    volumes:
+    - ./config/portal/.env:/app/.env
+    - portal-uploads:/app/public/uploads
+    environment:
+    - VIRTUAL_HOST=campr.local
+    env_file: config/.env
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+    - "1080:1080"
+    env_file: config/.env
+
+  mysql:
+    image: mysql:5.7
+    volumes:
+    - onpremise-data:/var/lib/mysql
+    - ./config/mysql/mysql.cnf:/etc/mysql/conf.d/docker.cnf
+    ports:
+    - "3306:3306"
+    env_file: config/.env
+
+  redis:
+    image: redis
+    env_file: config/.env
+    ports:
+    - "6379:6379"
+
+volumes:
+  onpremise-data:
+  workspaces-static-js:
+  workspaces-uploads:
+  portal-uploads:
