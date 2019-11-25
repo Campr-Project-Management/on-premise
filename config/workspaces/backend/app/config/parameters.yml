@@ -1,3 +1,4 @@
+# This file is auto-generated during the composer install
 parameters:
     database_host: mysql
     database_port: null
@@ -46,6 +47,7 @@ parameters:
     portal.api.base_url: 'http://portal'
     portal.api.host: campr.local
     portal.api.secret: 4D65A2AC47476D33BAB2CBF62BCE8
+    portal.api.timeout: 60
     portal.webhook.secret: 6F73A8EA3FBDB812922E2AB71E2F6
     enqueue.redis.dsn: 'redis://%redis_host%:6379/4?database=4'
     beta.db.snapshot: '%kernel.root_dir%/data/beta.db.snapshot.sql'

@@ -16,9 +16,9 @@ The basics consist of:
 - a `docker-compose.yml` file with everything preconfigured
 - a few configuration files required by the applications and the services that they relly on
 
-`Campr On Premise` is the on premise version of [Campr](https://campr.biz). It is made out of 2 applications, `portal` and `workspaces` and uses a mysql database and redis cache server to deliver the application.
+`Campr On Premise` is the on premise version of [Campr](https://campr.biz). It consists of a single Symfony application, a mysql server and a redis cache.
 
-The 2 apps are behind an nginx proxy which routes requests to the proper application depending on the domain.
+The Symfony application handles each requested domain as a separate environment with a separate database.
 
 This guide assumes you are familiar with `docker` and `docker-compose`. Upon request and negotiation, assistance can be provided for setting the project up.
 
@@ -29,9 +29,9 @@ Domains
 
 The default domains used are:
 - `campr.local`
-  - this is the `portal` app where you can login and create workspaces
+  - this is the part of the app where you can login and create workspaces
 - `*.campr.local`
-  - this is the `workspaces` as, where each workspace can be worked on as a separate environment
+  - this is the workspaces part of the application, where each workspace can be worked on as a separate environment
 
 As you can see we're using `campr.local` as a base domain, which means you will have to configure these domains in your `/etc/hosts` file manually. An example would look like this:
 
@@ -41,6 +41,22 @@ As you can see we're using `campr.local` as a base domain, which means you will 
 ```
 
 Unfortunately, wildcard domains are not supported out of the box so you wil have to add each created workspace as an entry there if you plan on keeping the domains as they are.
+
+In order for PDF printing to work, the PDF printing service makes requests to the API to retrieve data. Normally, this isn't an issue as we relly on external DNS services, however, in the on-premise environment, the PDF service will try to access the workspace's API vie it's domain (e.g.: `workspace1.campr.local`) and this will result in an error.
+
+To make the pdf printing work, you will have to add the current workspace hostname as an extra host inside your local
+`docker-compose.yml` file:
+
+e.g.:
+```yml
+# ...
+services:
+  workspaces:
+    # ...
+    extra_hosts:
+    - "workspace1.dev.campr.biz:127.0.0.1"
+# ...
+```
 
 Customizing the domains will be detailed in the [Customizations](#customizations) section.
 
@@ -73,9 +89,6 @@ Change every occurence of `campr.local` with your new domain in the following fi
 
 - `config/workspaces/backend/app/config/parameters.yml`
 - `docmer-compose.yml`
-- `config/portal/.env`
-
-Ensure that the `VIRTUAL_HOST` environment variables for the `workspaces` service is set to be a wildcard for the new domain.
 
 Changing mail service
 ---------------------
@@ -90,8 +103,4 @@ In the `config/workspaces/backend/app/config/parameters.yml` file change this:
     mailer_password: null
 ```
 
-In the `config/workspaces/backend/app/config/parameters.yml` file change this:
-
-```
-MAILER_URL=smtp://mailcatcher:1025?auth_mode=login&username=&password=
-```
+Once you have changed the mail configuration, the mailcatcher service is no longer necessary and can therefore be removed from the configuration.
