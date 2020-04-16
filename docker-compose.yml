@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   workspaces:
-    image: docker.pkg.github.com/camprgmbh/on-premise/campr:latest
+    image: camprgmbh/campr:latest
     shm_size: 1g
     ports:
     - "80:80"
