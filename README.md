@@ -1,19 +1,17 @@
 ![](https://user-images.githubusercontent.com/63307779/81802868-240f7280-9517-11ea-92a6-546ac97988fe.png)
-Welcome to CAMPR On-Premise builds!
-===================================
-
 General Information
 ===================
 
-This repo provides the basic for setting up *Campr On Premise* on your local network or own servers.
+This repo provides the basic for setting up **CAMPR On-Premise** on your local network or own servers.
+
+Campr On Premise is the on premise version of Campr. It consists of a single Symfony application, a mysql server and a redis cache.
+
+The Symfony application handles each requested domain as a separate environment with a separate database.
+
 
 The basics consist of:
 - a `docker-compose.yml` file with everything preconfigured
 - a few configuration files required by the applications and the services that they relly on
-
-`Campr On Premise` is the on premise version of [Campr](https://campr.biz). It consists of a single Symfony application, a mysql server and a redis cache.
-
-The Symfony application handles each requested domain as a separate environment with a separate database.
 
 This guide assumes you are familiar with `docker` and `docker-compose`. Upon request and negotiation, assistance can be provided for setting the project up.
 
@@ -25,9 +23,6 @@ CAMPR can be installed on any Unix, Linux, Windows or MacOS server.
 
 
 The separate installation of `MySQL`, `apache`, `php` and `redis` is not necessary, as all these installations are done via the installation script, CAMPR runs on your server in a docker container.
-
-
-
 
 Adjustments to your local domain, setting up the workspaces, the printing function and using your own mail server are explained in the following.
 
