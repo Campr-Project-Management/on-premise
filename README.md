@@ -106,4 +106,4 @@ Login
 =====
 1. Call up the URL `campr.local`in your web browser.
 2. Log in with your previously created user/ password.
-3. After successful login you will see your created workspace e.g. xxx. Log in and create your first project!
+3. After successful login you will see your created workspace e.g. `workspace1`. Log in and create your first project!
