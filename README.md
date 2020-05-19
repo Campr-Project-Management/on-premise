@@ -13,7 +13,7 @@ The basics consist of:
 - a `docker-compose.yml` file with everything preconfigured
 - a few configuration files required by the applications and the services that they relly on
 
-This guide assumes you are familiar with `docker` and `docker-compose`. Upon request and negotiation, assistance can be provided for setting the project up.
+This guide assumes you are a bit familiar with `docker` and `docker-compose`. Upon request and negotiation, assistance can be provided for setting the project up.
 
 For convenience, a `mailcatcher` service is preconfigured so that you can set your installation up easily. Please see the [Customizations](#customizations) section to find out how you can change the mailer configuration.
 
@@ -26,20 +26,87 @@ The separate installation of `MySQL`, `apache`, `php` and `redis` is not necessa
 
 Adjustments to your local domain, setting up the workspaces, the printing function and using your own mail server are explained in the following.
 
-Setup
+
+Setup Git
+  ====
+The installation of git is exemplary under ubuntu as follows:
+```
+sudo apt update
+sudo apt install git
+```
+confirm that you have installed Git correctly by running the following command:
+```
+git --version
+```
+```
+Output
+git version 2.17.1
+```
+
+Navigate to the directory where you want to create the repository. Next clone the campr on-premise repository, it's located here: https://github.com/CamprGmbH/on-premise.git.
+```
+git clone https://github.com/CamprGmbH/on-premise.git
+```
+
+Setup Docker
 =====
+Docker can be downloaded and installed from the appropriate download page for your system. https://www.docker.com/products/docker-desktop. For the installation under e.g. ubuntu execute the following command:
 
-The campr on premise repository is located here: https://github.com/CamprGmbH/on-premise.git
+```
+sudo apt-get install \
+apt-transport-https \
+ca-certificates \
+curl \
+software-properties-common -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable"
+sudo apt-get update -y
+sudo apt-get install docker-ce -y
+```
 
-1. Install `Docker`. `Docker` can be downloaded and installed from the appropriate download page for your system. https://www.docker.com/products/docker-desktop
+Test the installation and run the following sample image:
+```
+sudo docker run hello-world
+```
+The following message indicates that Docker is working correctly:
+```
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+9bb5a5d4561a: Pull complete
+Digest: sha256:3e1764d0f546ceac4565547df2ac4907fe46f007ea229fd7ef2718514bcec35d
+Status: Downloaded newer image for hello-world:latest
 
-2. Start Docker and create a user/password. This user is used for the first login to CAMPR
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+```
 
-3. Clone the repository `CamprGmbH/on-premise`[](https://github.com/CamprGmbH/on-premise.git) into your local directory.
+To start Docker automatically at boot time, execute the following command:
+```
+sudo systemctl status docker
+```
 
-4. Execute the file `docker-compose.yml` in your local directory
+Create a user/password then, this user will be used for the first login to CAMPR.
+```
+docker-compose exec workspaces bash
+bin/console tss:app:user-create yourname@youremail.xxx admin admin --role=ROLE_ADMIN
+```
 
-Domains
+Go to `docker-compose.yml` in your local directory and run
+```
+docker-compose up -d
+```
+If your installation was successful, you should see the following output on the console:
+```
+Starting on-premise_workspace_1   ... done
+Starting on-premise_redis_1       ... done
+Starting on-premise_mailcatcher_1 ... done
+Starting on-premise_mysql_1       ... done  
+```
+
+Configure domains
 =======
 
 The default domain we are using is `campr.local`:
@@ -56,13 +123,16 @@ As you can see we're using `campr.local` as a base domain, which means you will 
 
 Unfortunately, wildcard domains are not supported out of the box so you wil have to add each created workspace as an entry there if you plan on keeping the domains as they are.
 
+Configure pdf-printing
+======================
+
 In order for PDF printing to work, the PDF printing service makes requests to the API to retrieve data. Normally, this isn't an issue as we relly on external DNS services, however, in the on-premise environment, the PDF service will try to access the workspace's API vie it's domain (e.g.: `workspace1.campr.local`) and this will result in an error.
 
 To make the pdf printing work, you will have to add the current workspace hostname as an extra host inside your local
 `docker-compose.yml` file:
 
 e.g.:
-```yml
+```
 # ...
 services:
   workspaces:
@@ -106,4 +176,5 @@ Login
 =====
 1. Call up the URL `campr.local`in your web browser.
 2. Log in with your previously created user/ password.
-3. After successful login you will see your created workspace e.g. `workspace1`. Log in and create your first project!
+3. After successful login you will see your created workspace e.g. `workspace1`.
+Log in and create your first project!
