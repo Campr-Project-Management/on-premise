@@ -17,6 +17,12 @@ This guide assumes you are a bit familiar with `docker` and `docker-compose`. Up
 
 For convenience, a `mailcatcher` service is preconfigured so that you can set your installation up easily. Please see the [Customizations](#customizations) section to find out how you can change the mailer configuration.
 
+# Contributors
+
+<a href="https://github.com/CamprGmbH/campr/graphs/contributors">
+  <img src="https://contributors-img.web.app/image?repo=CamprGmbH/campr" />
+</a>
+
 Installation Requirement
 ========================
 CAMPR can be installed on any Unix, Linux, Windows or MacOS server.
