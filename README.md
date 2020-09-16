@@ -94,10 +94,10 @@ To start Docker automatically at boot time, execute the following command:
 sudo systemctl status docker
 ```
 
-Create a user/password then, this user will be used for the first login to CAMPR.
+Create a user/password then, this user will be used for the first login to CAMPR
 ```
+bin/console tss:app:user-create yourname@youremail.xxx admin admin --role=ROLE_ADMIN 
 docker-compose exec workspaces bash
-bin/console tss:app:user-create yourname@youremail.xxx admin admin --role=ROLE_ADMIN
 ```
 
 Go to `docker-compose.yml` in your local directory and run
