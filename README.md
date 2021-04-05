@@ -51,7 +51,7 @@ git version 2.17.1
 
 Navigate to the directory where you want to create the repository. Next clone the campr on-premise repository, it's located here: https://github.com/CamprGmbH/on-premise.git.
 ```
-git clone https://github.com/Campr-Project-Management/on-premise.git
+git clone https://github.com/campr-project-management/on-premise.git
 ```
 
 Setup Docker
