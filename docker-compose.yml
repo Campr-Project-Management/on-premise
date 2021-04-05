@@ -35,13 +35,7 @@ services:
     env_file: config/.env
     ports:
     - "6379:6379"
-
-watchtower:
-  image: v2tec/watchtower
-  volumes:
-  - /var/run/docker.sock:/var/run/docker.sock
-  - command: --interval 30
-
+    
 volumes:
   onpremise-data:
   workspaces-static-js:
