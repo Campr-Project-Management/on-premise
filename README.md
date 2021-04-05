@@ -19,7 +19,7 @@ For convenience, a `mailcatcher` service is preconfigured so that you can set yo
 
 # Contributors
 
-<a href="https://github.com/CamprGmbH/campr/graphs/contributors">
+<a href="https://github.com/Campr-Project-Management/campr/graphs/contributors">
   <img src="https://contributors-img.web.app/image?repo=CamprGmbH/campr" />
 </a>
 
@@ -51,7 +51,7 @@ git version 2.17.1
 
 Navigate to the directory where you want to create the repository. Next clone the campr on-premise repository, it's located here: https://github.com/CamprGmbH/on-premise.git.
 ```
-git clone https://github.com/CamprGmbH/on-premise.git
+git clone https://github.com/Campr-Project-Management/on-premise.git
 ```
 
 Setup Docker
