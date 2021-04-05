@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   workspaces:
-    image: camprgmbh/campr:latest
+    image: Campr-Project-Management/campr:latest
     shm_size: 1g
     ports:
     - "80:80"
