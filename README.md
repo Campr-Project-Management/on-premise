@@ -176,6 +176,8 @@ In the `config/workspaces/backend/app/config/parameters.yml` file change this:
     mailer_password: null
 ```
 
+Mail client application: http://campr.local:1080/
+
 Once you have changed the mail configuration, the mailcatcher service is no longer necessary and can therefore be removed from the configuration.
 
 Login
