@@ -93,6 +93,13 @@ To start Docker automatically at boot time, execute the following command:
 ```
 sudo systemctl status docker
 ```
+
+Add your normal user to the Docker group so that you can also act as a normal user on the Docker daemon and the running Campr containers.
+
+```
+sudo usermod -aG docker $USER
+```
+
 Setup Docker Compose
 =====
 
