@@ -108,7 +108,7 @@ bin/console tss:app:user-create yourname@youremail.xxx admin admin --role=ROLE_A
 
 Special feature
 =======
-If you want to install Campr on an ARM architecture (Raspberry Pi, Mac M1, etc.), you have to adapt your docker-compose.yml. MySQL does not officially support ARM, check details here: https://github.com/biarms/mysql
+If you want to install Campr on an ARM architecture (Raspberry Pi, Mac M1, etc.), you have to adapt your docker-compose.yml, check details here: https://github.com/biarms/mysql
 
 Replace the following entry with: 
 ```
