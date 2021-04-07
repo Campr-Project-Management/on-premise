@@ -106,6 +106,14 @@ docker-compose exec workspaces bash
 bin/console tss:app:user-create yourname@youremail.xxx admin admin --role=ROLE_ADMIN 
 ```
 
+Special feature
+=======
+If you want to install Campr on an ARM architecture (Raspberry Pi, Mac M1, etc.), you have to adapt your docker-compose.yml. MySQL does not officially support ARM, check details here: https://github.com/biarms/mysql
+
+Replace the following entry with: 
+```
+Image: biarms/mysql:5
+```
 Go to `docker-compose.yml` in your local directory and run
 ```
 docker-compose up -d
@@ -119,6 +127,7 @@ Starting on-premise_mysql_1       ... done
 ```
 
 Configure domains
+
 =======
 
 The default domain we are using is `campr.local`:
