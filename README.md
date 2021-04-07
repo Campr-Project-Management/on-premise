@@ -21,7 +21,7 @@ References
 ========================
 The installation has been successfully tested on the following environments so far:
 
-- Mini Server with intel Core i5, 8GB RAM
+- Mini Server with intel Core i5, 8GB RAM and ubuntu 20.04
 
 - Raspberry Pi 4 Model B, 4GB and 8GB RAM with ubuntu 20.04 and Raspberry Pi OS
 
