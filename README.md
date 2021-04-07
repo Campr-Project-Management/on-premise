@@ -121,8 +121,8 @@ docker-compose exec workspaces bash
 bin/console tss:app:user-create yourname@youremail.xxx admin admin --role=ROLE_ADMIN 
 ```
 
-Special feature
-=======
+Special feature ARM32 / ARM64
+=============================
 If you want to install Campr on an ARM architecture (Raspberry Pi, Mac M1, etc.), you have to adapt your docker-compose.yml, check details here: https://github.com/biarms/mysql
 
 Replace the following entry with: 
