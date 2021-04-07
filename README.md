@@ -17,6 +17,14 @@ This guide assumes you are a bit familiar with `docker` and `docker-compose`. Up
 
 For convenience, a `mailcatcher` service is preconfigured so that you can set your installation up easily. Please see the [Customizations](#customizations) section to find out how you can change the mailer configuration.
 
+References
+========================
+The installation has been successfully tested on the following environments so far:
+
+- Mini Server with intel Core i5, 8GB RAM
+
+- Raspberry Pi 4 Model B, 4GB and 8GB RAM with ubuntu 20.04 and Raspberry Pi OS
+
 # Contributors
 
 <a href="https://github.com/Campr-Project-Management/campr/graphs/contributors">
