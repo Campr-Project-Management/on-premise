@@ -54,7 +54,7 @@ git --version
 ```
 ```
 Output
-git version 2.17.1
+git version 2.25.1
 ```
 
 Navigate to the directory where you want to create the repository. Next clone the campr on-premise repository, it's located here: https://github.com/CamprGmbH/on-premise.git.
