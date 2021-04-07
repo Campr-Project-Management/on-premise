@@ -109,7 +109,7 @@ sudo usermod -aG docker $USER
 ```
 
 Setup Docker Compose
-=====
+====================
 
 ```
 sudo apt install docker-compose
@@ -119,6 +119,13 @@ Create a user/password then, this user will be used for the first login to CAMPR
 ```
 docker-compose exec workspaces bash
 bin/console tss:app:user-create yourname@youremail.xxx admin admin --role=ROLE_ADMIN 
+```
+
+Docker Compose on Raspberry Pi
+==============================
+```
+sudo apt install python3-pip
+sudo pip3 install docker-compose
 ```
 
 Special feature ARM32 / ARM64
